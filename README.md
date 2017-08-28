@@ -1,2 +1,1 @@
-# whoisthis
-Flash cards to remember people
+## Who Is This: a Flash Card app to remember specific people.
