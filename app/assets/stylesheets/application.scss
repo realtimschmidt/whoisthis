@@ -1,6 +1,17 @@
 @import "bootstrap-sprockets";
 @import "bootstrap";
 
+.login {
+  margin: 1rem;
+}
+
+.nav {
+  margin: 3rem 0 0 0;
+}
+
+.home-header {
+  text-align: center;
+}
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
