@@ -1,7 +1,25 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
+require 'random_data'
+
+#Create Quizzes
+4.times do
+  Quiz.create!(
+    title: Faker::Name.title
+  )
+end
+quizzes = Quiz.all
+
+#Create Cards
+20.times do
+  Card.create!(
+    quiz: quizzes.sample,
+    image: RandomData.random_sentence,
+    name: Faker::Name.title,
+    role: RandomData.random_sentence,
+    city: RandomData.random_sentence,
+    school: RandomData.random_sentence
+  )
+end
+
+puts "Seed finished"
+puts "#{Quiz.count} quizzes created"
+puts "#{Card.count} cards created"

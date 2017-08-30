@@ -11,7 +11,26 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170830172900) do
+ActiveRecord::Schema.define(version: 20170830191136) do
+
+  create_table "cards", force: :cascade do |t|
+    t.string   "image"
+    t.string   "name"
+    t.string   "role"
+    t.string   "city"
+    t.string   "school"
+    t.integer  "quiz_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "cards", ["quiz_id"], name: "index_cards_on_quiz_id"
+
+  create_table "quizzes", force: :cascade do |t|
+    t.string   "title"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", force: :cascade do |t|
     t.string   "email",                  default: "", null: false
