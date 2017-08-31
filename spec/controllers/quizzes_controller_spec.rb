@@ -11,7 +11,7 @@ RSpec.describe QuizzesController, type: :controller do
 
     it "assigns [my_quiz] to @quizzes" do
       get :index
-      expect(assigns(:quizs)).to eq([my_quiz])
+      expect(assigns(:quizzes)).to eq([my_quiz])
     end
   end
 
@@ -28,7 +28,7 @@ RSpec.describe QuizzesController, type: :controller do
 
     it "assigns my_quiz to @quiz" do
       get :show, {id: my_quiz.id}
-      expect(assings(:quiz)).to eq(my_quiz)
+      expect(assigns(:quiz)).to eq(my_quiz)
     end
   end
 
@@ -66,11 +66,56 @@ RSpec.describe QuizzesController, type: :controller do
   end
 
 
-#  describe "GET #edit" do
-#    it "returns http success" do
-#      get :edit
-#      expect(response).to have_http_status(:success)
-#    end
-#  end
+  describe "GET #edit" do
+    it "returns http success" do
+      get :edit, {id: my_quiz.id}
+      expect(response).to have_http_status(:success)
+    end
 
+    it "renders the #edit view" do
+      get :edit, {id: my_quiz.id}
+      expect(response).to render_template :edit
+  end
+
+    it "assigns quiz to be updated to @quiz" do
+      get :edit, {id: my_quiz.id}
+
+      quiz_instance = assigns(:quiz)
+
+      expect(quiz_instance.id).to eq my_quiz.id
+      expect(quiz_instance.title).to eq my_quiz.title
+    end
+  end
+
+  describe "PUT update" do
+    it "updates quiz with expected attributes" do
+      new_title = Faker::Name.title
+
+      put :update, id: my_quiz.id, quiz: {title: new_title}
+
+      updated_quiz = assigns(:quiz)
+      expect(updated_quiz.id).to eq my_quiz.id
+      expect(updated_quiz.title).to eq new_title
+    end
+
+    it "redirects to the updated quiz" do
+      new_title = Faker::Name.title
+
+      put :update, id: my_quiz.id, quiz: {title: new_title}
+      expect(response).to redirect_to my_quiz
+    end
+  end
+
+  describe "DELETE destroy" do
+    it "deletes the quiz" do
+      delete :destroy, {id: my_quiz.id}
+      count = Quiz.where({id: my_quiz.id}).size
+      expect(count).to eq 0
+    end
+
+    it "redirects to quizzes index" do
+      delete :destroy, {id: my_quiz.id}
+      expect(response).to redirect_to quizzes_path
+    end
+  end
 end
