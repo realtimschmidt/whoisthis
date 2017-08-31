@@ -14,9 +14,9 @@ quizzes = Quiz.all
     quiz: quizzes.sample,
     image: RandomData.random_sentence,
     name: Faker::Name.title,
-    role: RandomData.random_sentence,
-    city: RandomData.random_sentence,
-    school: RandomData.random_sentence
+    role: Faker::Job.title,
+    city: Faker::Address.city,
+    school: Faker::Educator.university
   )
 end
 
