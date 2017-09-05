@@ -1,10 +1,18 @@
 <h1>All Quizzes</h1>
-<% @quizzes.each do |quiz| %>
-  <div class="media">
-    <div class="media-body">
-      <h4 class="media-heading">
-        <%= link_to quiz.title, quiz %>
-      </h4>
-    </div>
+
+<div class="row">
+  <div class="col-md-8">
+    <% @quizzes.each do |quiz| %>
+      <div class="media">
+        <div class="media-body">
+          <h4 class="media-heading">
+            <%= link_to quiz.title, quiz %>
+          </h4>
+        </div>
+      </div>
+    <% end %>
   </div>
-<% end %>
+  <div class="col-md-4">
+    <%= link_to "New Quiz", new_quiz_path, class: 'btn btn-success' %>
+  </div>
+</div>

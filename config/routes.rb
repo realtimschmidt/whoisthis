@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
-  resources :quizzes
-
   devise_for :users
+  resources :quizzes do
+    resources :cards, except: [:index]
+  end
+
   get 'about' => 'home#about'
 
   root 'home#index'
