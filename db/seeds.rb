@@ -3,7 +3,7 @@ require 'random_data'
 #Create Quizzes
 4.times do
   Quiz.create!(
-    title: Faker::Name.title
+    title: Faker::Space.galaxy
   )
 end
 quizzes = Quiz.all
@@ -13,7 +13,8 @@ quizzes = Quiz.all
   Card.create!(
     quiz: quizzes.sample,
     image: RandomData.random_sentence,
-    name: Faker::Name.title,
+    photo: Faker::Avatar.image,
+    name: Faker::Name.name,
     role: Faker::Job.title,
     city: Faker::Address.city,
     school: Faker::Educator.university

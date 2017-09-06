@@ -31,3 +31,4 @@ gem 'turbolinks'
 gem 'bootstrap-sass'
 gem 'devise'
 gem 'pundit'
+gem "paperclip", "~> 5.0.0"

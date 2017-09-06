@@ -1,14 +1,14 @@
 <h1><%= @card.name %></h1>
-
 <div class="row">
   <div class="col-md-8">
     <div class="media">
       <div class="media-body">
-        <p><%= @card.image %></p>
+        <p><%= link_to image_tag(@card.photo.url(:medium), class: 'media-object'), @card.photo.url, target: '_blank' %></p>
         <p><strong>Name: </strong><%= @card.name %></p>
         <p><strong>Current Role: </strong><%= @card.role %></p>
         <p><strong>Current City: </strong><%= @card.city %></p>
         <p><strong>Gradute of: </strong><%= @card.school %></p>
+        <p><strong>Quiz: <%= link_to @quiz.title, @quiz %></p>
       </div>
     </div>
   </div>

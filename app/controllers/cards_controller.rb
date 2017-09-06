@@ -2,6 +2,7 @@ class CardsController < ApplicationController
 
   def show
     @card = Card.find(params[:id])
+    @quiz = Quiz.find(params[:quiz_id])
   end
 
   def new
@@ -12,6 +13,7 @@ class CardsController < ApplicationController
   def create
     @card = Card.new
     @card.image = params[:card][:image]
+    @card.photo = params[:card][:photo]
     @card.name = params[:card][:name]
     @card.role = params[:card][:role]
     @card.city = params[:card][:city]
@@ -63,6 +65,6 @@ class CardsController < ApplicationController
   end
 
   def card_params
-    params.require(:image).permit(:name)
+    params.require(:photo).permit(:name)
   end
 end

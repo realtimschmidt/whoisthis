@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170905145857) do
+ActiveRecord::Schema.define(version: 20170906012125) do
 
   create_table "cards", force: :cascade do |t|
     t.string   "image"
@@ -20,8 +20,12 @@ ActiveRecord::Schema.define(version: 20170905145857) do
     t.string   "city"
     t.string   "school"
     t.integer  "quiz_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "cards", ["quiz_id"], name: "index_cards_on_quiz_id"

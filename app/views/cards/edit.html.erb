@@ -12,8 +12,8 @@
   <div class="col-md-8">
     <%= form_for [@card.quiz, @card] do |f| %>
       <div class="form-group">
-        <%= f.label :image %>
-        <%= f.text_field :image, class: 'form-control', placeholder: "Enter image here" %>
+        <%= f.label :photo %>
+        <%= f.file_field :photo %>
       </div>
       <div class="form-group">
         <%= f.label :name %>
