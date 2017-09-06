@@ -2,7 +2,7 @@ require 'rails_helper'
 
 RSpec.describe CardsController, type: :controller do
   let(:my_quiz) { Quiz.create!(title: Faker::Name.title) }
-  let(:my_card) { my_quiz.cards.create!(image: 'face.jpg', name: Faker::Name.title, role: Faker::Job.title, city: Faker::Address.city, school: Faker::Educator.university) }
+  let(:my_card) { my_quiz.cards.create!(photo: Faker::Avatar.image, name: Faker::Name.title, role: Faker::Job.title, company: Faker::Company.name, city: Faker::Address.city, school: Faker::Educator.university) }
 
   describe "GET show" do
     it "returns http success" do
@@ -40,16 +40,16 @@ RSpec.describe CardsController, type: :controller do
 
   describe "POST create" do
     it "increases the number of Card by 1" do
-      expect{post :create, quiz_id: my_quiz.id, card: {image: 'face.jpg', name: Faker::Name.title, role: Faker::Job.title, city: Faker::Address.city, school: Faker::Educator.university}}.to change(Card,:count).by(1)
+      expect{post :create, quiz_id: my_quiz.id, card: {photo: Faker::Avatar.image, name: Faker::Name.title, role: Faker::Job.title, company: Faker::Company.name, city: Faker::Address.city, school: Faker::Educator.university}}.to change(Card,:count).by(1)
     end
 
     it "assigns the new card to @card" do
-      post :create, quiz_id: my_quiz.id, card: {image: 'face.jpg', name: Faker::Name.title, role: Faker::Job.title, city: Faker::Address.city, school: Faker::Educator.university}
+      post :create, quiz_id: my_quiz.id, card: {photo: Faker::Avatar.image, name: Faker::Name.title, role: Faker::Job.title, company: Faker::Company.name, city: Faker::Address.city, school: Faker::Educator.university}
       expect(assigns(:card)).to eq Card.last
     end
 
     it "redirects to the new card" do
-      post :create, quiz_id: my_quiz.id, card: {image: 'face.jpg', name: Faker::Name.title, role: Faker::Job.title, city: Faker::Address.city, school: Faker::Educator.university}
+      post :create, quiz_id: my_quiz.id, card: {photo: Faker::Avatar.image, name: Faker::Name.title, role: Faker::Job.title, company: Faker::Company.name, city: Faker::Address.city, school: Faker::Educator.university}
       expect(response).to redirect_to [my_quiz, Card.last]
     end
   end
@@ -71,40 +71,40 @@ RSpec.describe CardsController, type: :controller do
 
       expect(card_instance.id).to eq my_card.id
       expect(card_instance.name).to eq my_card.name
-      expect(card_instance.image).to eq my_card.image
       expect(card_instance.city).to eq my_card.city
       expect(card_instance.role).to eq my_card.role
+      expect(card_instance.company).to eq my_card.company
       expect(card_instance.school).to eq my_card.school
     end
   end
 
   describe "PUT update" do
     it "updates card with expected attributes" do
-      new_image = "better_face.jpg"
+      new_company = Faker::Company.name
       new_name = Faker::Name.title
       new_role = Faker::Job.title
       new_city = Faker::Address.city
       new_school = Faker::Educator.university
 
-      put :update, quiz_id: my_quiz.id, id: my_card.id, card: {image: new_image, name: new_name, role: new_role, city: new_city, school: new_school}
+      put :update, quiz_id: my_quiz.id, id: my_card.id, card: {name: new_name, role: new_role, company: new_company, city: new_city, school: new_school}
 
       updated_card = assigns(:card)
       expect(updated_card.id).to eq my_card.id
       expect(updated_card.name).to eq new_name
-      expect(updated_card.image).to eq new_image
       expect(updated_card.city).to eq new_city
       expect(updated_card.role).to eq new_role
+      expect(updated_card.company).to eq new_company
       expect(updated_card.school).to eq new_school
     end
 
     it "redirects to the updated post" do
-      new_image = "face.jpg"
       new_name = Faker::Name.title
       new_role = Faker::Job.title
+      new_company = Faker::Company.name
       new_city = Faker::Address.city
       new_school = Faker::Educator.university
 
-      put :update, quiz_id: my_quiz.id, id: my_card.id, card: {image: 'face.jpg', name: Faker::Name.title, role: Faker::Job.title, city: Faker::Address.city, school: Faker::Educator.university}
+      put :update, quiz_id: my_quiz.id, id: my_card.id, card: {company: Faker::Company.name, name: Faker::Name.title, role: Faker::Job.title, city: Faker::Address.city, school: Faker::Educator.university}
 
       expect(response).to redirect_to [my_quiz, my_card]
     end

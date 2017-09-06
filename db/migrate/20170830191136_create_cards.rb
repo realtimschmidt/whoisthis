@@ -4,6 +4,7 @@ class CreateCards < ActiveRecord::Migration
       t.string :image
       t.string :name
       t.string :role
+      t.string :company
       t.string :city
       t.string :school
 

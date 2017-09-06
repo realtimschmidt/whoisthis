@@ -16,6 +16,7 @@ quizzes = Quiz.all
     photo: Faker::Avatar.image,
     name: Faker::Name.name,
     role: Faker::Job.title,
+    company: Faker::Company.name,
     city: Faker::Address.city,
     school: Faker::Educator.university
   )

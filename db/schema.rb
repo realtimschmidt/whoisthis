@@ -17,6 +17,7 @@ ActiveRecord::Schema.define(version: 20170906012125) do
     t.string   "image"
     t.string   "name"
     t.string   "role"
+    t.string   "company"
     t.string   "city"
     t.string   "school"
     t.integer  "quiz_id"

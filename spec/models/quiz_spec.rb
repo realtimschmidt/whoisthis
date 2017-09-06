@@ -6,6 +6,8 @@ RSpec.describe Quiz, type: :model do
 
   it { is_expected.to have_many(:cards) }
 
+  it { is_expected.to validate_presence_of(:title) }
+
   describe "attributes" do
     it "has a title attribute" do
       expect(quiz).to have_attributes(title: title)

@@ -16,6 +16,7 @@ class CardsController < ApplicationController
     @card.photo = params[:card][:photo]
     @card.name = params[:card][:name]
     @card.role = params[:card][:role]
+    @card.company = params[:card][:company]
     @card.city = params[:card][:city]
     @card.school = params[:card][:school]
     @quiz = Quiz.find(params[:quiz_id])
@@ -39,6 +40,7 @@ class CardsController < ApplicationController
     @card.image = params[:card][:image]
     @card.name = params[:card][:name]
     @card.role = params[:card][:role]
+    @card.company = params[:card][:company]
     @card.city = params[:card][:city]
     @card.school = params[:card][:school]
 
