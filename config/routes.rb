@@ -4,6 +4,8 @@ Rails.application.routes.draw do
     resources :cards, except: [:index]
   end
 
+  resources :takequizzes, only: [:index, :show]
+
   get 'about' => 'home#about'
 
   root 'home#index'
