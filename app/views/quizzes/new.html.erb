@@ -8,6 +8,25 @@
     </ul>
   </div>
   <div class="col-md-8">
-    <%= render partial: 'form', locals: { quiz: @quiz } %>
+    <%= form_for [@quiz] do |f| %>
+      <% if @quiz.errors.any? %>
+        <div class="alert alert-danger">
+          <h4><%= pluralize(@quiz.errors.count, "error") %>.</h4>
+          <ul>
+            <% @quiz.errors.full_messages.each do |msg| %>
+              <li><%= msg %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+      <%= form_group_tag(@quiz.errors[:title]) do %>
+        <%= f.label :title %>
+        <%= f.text_field :title, class: 'form-control', placeholder: "Enter quiz title" %>
+      <% end %>
+      <br/>
+      <div class="form-group">
+        <%= f.submit "Save", class: 'btn btn-success' %>
+      </div>
+    <% end %>
   </div>
 </div>
