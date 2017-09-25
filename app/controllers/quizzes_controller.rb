@@ -5,6 +5,7 @@ class QuizzesController < ApplicationController
 
   def show
     @quiz = Quiz.find(params[:id])
+    @card = @quiz.cards.sample
   end
 
   def new
