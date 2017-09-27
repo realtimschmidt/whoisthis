@@ -7,32 +7,71 @@
 </h1>
 
 <div class="jumbotron home-header">
-  <h1>Who Is This?</h1>
-  <%= image_tag(@card.photo.url(:medium), class: 'quiz-photo')%>
-  <div>
-    Card ID: <%= @card.id %> <br/>
-    Card Name: <%= @card.name %>
-    <p>Name: <input type="text"> <input type="submit" value="Submit"></p>
-    <p>Current Role: <input type="text"> <input type="submit" value="Submit"></p>
+  <h1 class=>Who Is This?</h1>
+  <div class='quiz-container'>
+    <div class='quiz-photo'>
+      <%= image_tag(@card.photo.url(:medium), class: 'quiz-photo')%>
+    </div>
+    <div class='quiz-responses'>
+      <form id='answerForm'>
+        <p><input type="text" id='answerName' placeholder='Name'></p>
+        <p><input type="text" id='answerRole' placeholder='Current Role'></p>
+        <p><input type="text" id='answerCompany' placeholder='Current Company'></p>
+        <p><input type="text" id='answerCity' placeholder='Current City'></p>
+        <p><input type="text" id='answerSchool' placeholder='School Attended'></p>
+        <input type="submit" value="Reveal"></br></br>
+      </form>
+    </div>
   </div>
-  <%= link_to "Next", @quiz, class: 'btn btn-success' %>
+  <%= link_to "Next Card", @quiz, class: 'btn btn-success' %>
 </div>
 
 
-<div class="row">
-  <div class="col-md-8">
-    <br/>
-    <% @quiz.cards.each do |card| %>
-      <div class="media">
-        <div class="media-body">
-          <div class="quiz-thumb">
-            <%= link_to image_tag(card.photo.url(:thumb), class: 'media-object'), card.photo.url, target: '_blank' %>
-          </div>
-          <h4 class="media-heading" id="name-placement">
-            <%= link_to card.name, quiz_card_path(@quiz, card) %>
-          </h4>
-        </div>
-      </div>
-    <% end %>
-  </div>
-</div>
+<script type="text/javascript">
+  var checkSubmission = function(e){
+    e.preventDefault()
+    var inputName = document.querySelector('#answerName').value
+    if(inputName === '<%= @card.name%>'){
+      alert('Name: Correct!')
+    } else {
+      alert('Not quite. Name is: <%= @card.name%>')
+    }
+    var inputRole = document.querySelector('#answerRole').value
+    if(inputRole === '<%= @card.role%>'){
+      alert('Role: Correct!')
+    } else {
+      alert('Shoot! Role is actually: <%= @card.role%>')
+    }
+    var inputCompany = document.querySelector('#answerCompany').value
+    if('<%= @card.company%>' === ''){
+    } else {
+      if(inputCompany === '<%= @card.company%>'){
+        alert('Company: Correct!')
+      } else {
+        alert('Not quite. Company is: <%= @card.company%>')
+      }
+    }
+    var inputCity = document.querySelector('#answerCity').value
+    if('<%= @card.city%>' === ''){
+    } else {
+      if(inputCity === '<%= @card.city%>'){
+        alert('City: Correct!')
+      } else {
+        alert('Wrong city. City is: <%= @card.city%>')
+      }
+    }
+    var inputSchool = document.querySelector('#answerSchool').value
+    if('<%= @card.school%>' === ''){
+    } else {
+      if(inputSchool === '<%= @card.school%>'){
+        alert('School: Correct!')
+      } else {
+        alert('Not quite. School is: <%= @card.school%>')
+      }
+    }
+  }
+
+
+  var form = document.querySelector('#answerForm')
+  form.onsubmit = checkSubmission
+</script>

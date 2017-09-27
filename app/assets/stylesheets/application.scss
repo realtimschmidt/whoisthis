@@ -19,8 +19,19 @@
   margin: 0 2rem 0 0;
 }
 
+.quiz-container {
+  width: 100%;
+  overflow: hidden;
+}
+
 .quiz-photo {
-  margin: 0 0 2rem 0;
+  margin: 0 0 0 10px;
+  width: 200px;
+  float: left;
+}
+
+.quiz-responses {
+  margin: 0 0 0 230px;
 }
 
 #name-placement {
