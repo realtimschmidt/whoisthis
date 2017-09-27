@@ -9,9 +9,15 @@
 <div class="jumbotron home-header">
   <h1 class=>Who Is This?</h1>
   <div class='quiz-container'>
+    <% if @quiz.cards.sample.nil? %>
+    <div class='quiz-photo'>
+      Edit the quiz to create new cards.
+    </div>
+    <% else %>
     <div class='quiz-photo'>
       <%= image_tag(@card.photo.url(:medium), class: 'quiz-photo')%>
     </div>
+    <% end %>
     <div class='quiz-responses'>
       <form id='answerForm'>
         <p><input type="text" id='answerName' placeholder='Name'></p>
@@ -26,7 +32,8 @@
   <%= link_to "Next Card", @quiz, class: 'btn btn-success' %>
 </div>
 
-
+<% if @quiz.cards.sample.nil? %>
+<% else %>
 <script type="text/javascript">
   var checkSubmission = function(e){
     e.preventDefault()
@@ -75,3 +82,4 @@
   var form = document.querySelector('#answerForm')
   form.onsubmit = checkSubmission
 </script>
+<% end %>
